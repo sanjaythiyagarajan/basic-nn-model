@@ -2,17 +2,20 @@
 
 ## AIM
 
-To develop a neural network regression model for the given dataset.
+#### To develop a neural network regression model for the given dataset.
 
 ## THEORY
-A neural network is a computer program inspired by how our brains work. It's used to solve problems by finding patterns in data. Imagine a network of interconnected virtual "neurons." Each neuron takes in information, processes it, and passes it along.
 
-A Neural Network Regression Model is a type of machine learning algorithm that is designed to predict continuous numeric values based on input data. It utilizes layers of interconnected nodes, or neurons, to learn complex patterns in the data. The architecture typically consists of an input layer, one or more hidden layers with activation functions, and an output layer that produces the regression predictions.
+##### A neural network is a computer program inspired by how our brains work. It's used to solve problems by finding patterns in data. Imagine a network of interconnected virtual "neurons." Each neuron takes in information, processes it, and passes it along.
 
-This model can capture intricate relationships within data, making it suitable for tasks such as predicting prices, quantities, or any other continuous numerical outputs.
+##### A Neural Network Regression Model is a type of machine learning algorithm that is designed to predict continuous numeric values based on input data. It utilizes layers of interconnected nodes, or neurons, to learn complex patterns in the data. The architecture typically consists of an input layer, one or more hidden layers with activation functions, and an output layer that produces the regression predictions.
+
+##### This model can capture intricate relationships within data, making it suitable for tasks such as predicting prices, quantities, or any other continuous numerical outputs.
+
 ## Neural Network Model
 
-![image](https://github.com/Bmohamedathil/basic-nn-model/assets/119560261/1e33c5ea-2b02-46a6-9ced-a17006c51dfb)
+![image](https://github.com/PSriVarshan/basic-nn-model/assets/114944059/4b81f952-bf11-4e78-b7f8-a1b79090ed09)
+
 
 ## DESIGN STEPS
 
@@ -45,14 +48,13 @@ Plot the performance plot
 Evaluate the model with the testing data.
 
 ## PROGRAM
+### Name: SANJAY T
+### Register Number: 212222110039
+python
 
-Program developed by: SANJAY T
+# Importing Modules:
 
-Register Number: 212222110039
-
-### Importing Modules:
-```
-from google.colab import auth
+```from google.colab import auth
 import gspread
 from google.auth import default
 
@@ -66,32 +68,32 @@ from tensorflow.keras.metrics import RootMeanSquaredError as rmse
 import pandas as pd
 import matplotlib.pyplot as plt
 ```
-### Authenticate & Create Dataframe using Data in Sheets:
+# Authenticate & Create Dataframe using Data in Sheets:
 ```
 auth.authenticate_user()
 creds, _ = default()
 gc = gspread.authorize(creds)
 
-sheet = gc.open('SomDocs DL-01').sheet1 
+sheet = gc.open('Mysample').sheet1 
 rows = sheet.get_all_values()
 
 df = pd.DataFrame(rows[1:], columns=rows[0])
 df = df.astype({'Input':'float'})
 df = df.astype({'Output':'float'})
 ```
-### Assign X and Y values:
-
+# Assign X and Y values:
+```
 x = df[["Input"]] .values
 y = df[["Output"]].values
-
-### Normalize the values & Split the data:
+```
+# Normalize the values & Split the data:
 ```
 scaler = MinMaxScaler()
 scaler.fit(x)
 x_n = scaler.fit_transform(x)
 x_train,x_test,y_train,y_test = train_test_split(x_n,y,test_size = 0.3,random_state = 3)
 ```
-### Create a Neural Network & Train it:
+# Create a Neural Network & Train it:
 ```
 ai_brain = Seq([
     Den(9,activation = 'relu',input_shape=[1]),
@@ -103,39 +105,46 @@ ai_brain.compile(optimizer = 'rmsprop',loss = 'mse')
 
 ai_brain.fit(x_train,y_train,epochs=1000)
 ai_brain.fit(x_train,y_train,epochs=1000)
-```
-### Plot the Loss:
-```
+
+# Plot the Loss:
+
 loss_plot = pd.DataFrame(ai_brain.history.history)
 loss_plot.plot()
 ```
-### Evaluate the model:
+# Evaluate the model:
 ```
 err = rmse()
 preds = ai_brain.predict(x_test)
 err(y_test,preds)
 ```
-### Predict for some value:
+# Predict for some value:
 ```
 x_n1 = [[9]]
 x_n_n = scaler.transform(x_n1)
 ai_brain.predict(x_n_n)
+
 ```
 ## Dataset Information
-![image](https://github.com/Bmohamedathil/basic-nn-model/assets/119560261/70f1a614-e226-4416-a88c-4e40a3b3f4cb)
+
+![image](https://github.com/PSriVarshan/basic-nn-model/assets/114944059/ce55eff8-d273-45a6-88a5-75a315e7859e)
+
 
 ## OUTPUT
 
 ### Training Loss Vs Iteration Plot
-![image](https://github.com/Bmohamedathil/basic-nn-model/assets/119560261/12f455ec-b908-4633-98fc-6f355ffb7e9d)
+
+![image](https://github.com/PSriVarshan/basic-nn-model/assets/114944059/9ee62e31-4b9b-4c3d-9930-d4355427add3)
+
 
 ### Test Data Root Mean Squared Error
-![image](https://github.com/Bmohamedathil/basic-nn-model/assets/119560261/6b4137b7-809d-4876-acfa-e0ffe4293868)
+
+![image](https://github.com/PSriVarshan/basic-nn-model/assets/114944059/e5e1aadd-8289-4a77-8e4c-7a9d013fc7cf)
+
 
 ### New Sample Data Prediction
-![image](https://github.com/Bmohamedathil/basic-nn-model/assets/119560261/0bb9288b-f66e-4306-a7ff-e5f51606214f)
 
+![image](https://github.com/PSriVarshan/basic-nn-model/assets/114944059/25faf495-8cf9-44a9-b189-09c8f8f7dfb2)
 
 ## RESULT
 
-Thus to develop a neural network regression model for the dataset created is successfully executed.
+### Thus to develop a neural network regression model for the dataset created is successfully executed.
